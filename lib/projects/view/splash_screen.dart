@@ -1,5 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:savingmoney/projects/controller/user_provider.dart';
 import 'package:savingmoney/projects/view/home.dart';
 import 'package:savingmoney/projects/view/login.dart';
 
@@ -19,9 +20,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _checkLogin() async {
     await Future.delayed(Duration(seconds: 2));
-    final user = FirebaseAuth.instance.currentUser;
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
 
-    if (user != null) {
+    if (userProvider.isLoggedIn) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Home()),
