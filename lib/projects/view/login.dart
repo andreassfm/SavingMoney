@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:savingmoney/projects/controller/authentication/user_authentication.dart';
 import 'package:savingmoney/projects/controller/user_controller.dart';
 import 'package:savingmoney/projects/view/home.dart';
+import 'package:savingmoney/projects/view/register.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -44,7 +45,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: Colors.white,
         body: Center(
           child: Padding(
             padding: EdgeInsets.all(24),
@@ -55,11 +56,7 @@ class _LoginState extends State<Login> {
                 SizedBox(height: 20),
                 Text(
                   'Login',
-                  style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.orange,
-                  ),
+                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 30),
                 TextField(
@@ -67,7 +64,10 @@ class _LoginState extends State<Login> {
                   decoration: InputDecoration(
                     labelText: 'Email',
                     hintText: 'Masukkan email Anda',
-                    prefixIcon: Icon(Icons.email_outlined),
+                    prefixIcon: Icon(
+                      Icons.email_outlined,
+                      color: Colors.orange,
+                    ),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -78,6 +78,8 @@ class _LoginState extends State<Login> {
                   decoration: InputDecoration(
                     labelText: 'Password',
                     hintText: 'Masukkan password Anda',
+                    prefixIcon: Icon(Icons.password, color: Colors.orange),
+                    border: OutlineInputBorder(),
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -88,19 +90,51 @@ class _LoginState extends State<Login> {
                         obscurePassword
                             ? Icons.visibility_off
                             : Icons.visibility,
+                        color: Colors.orange,
                       ),
                     ),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    UserController.login(
-                      context: context,
-                      email: emailController.text,
-                      password: passwordController.text,
-                    );
-                  },
-                  child: Text('Login'),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        UserController.login(
+                          context: context,
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );
+                      },
+                      child: Text(
+                        'Login',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => Register()),
+                        );
+                      },
+                      child: Text(
+                        'Register',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.orange,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

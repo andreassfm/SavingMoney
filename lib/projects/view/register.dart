@@ -111,7 +111,7 @@ class _RegisterState extends State<Register> {
                       password: passwordController.text,
                     );
                   },
-                  child: Text('Login'),
+                  child: Text('Register'),
                 ),
               ],
             ),
